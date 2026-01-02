@@ -257,7 +257,7 @@ h3 {
   filter: blur(10px);
 }
 
-.e-button {
+.e-buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -266,6 +266,16 @@ h3 {
 }
 
 .e-buttons button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.button {
   background: #4caf50;
   color: white;
   border: none;

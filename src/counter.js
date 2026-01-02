@@ -7,7 +7,7 @@ export default function Counter(props) {
     <div className={props.class}>
       <p>Кліків: {count}</p>
       <button className={props.bclass} onClick={() => setCount(count + 1)}>
-        {props.btext} ?? Збільшити
+        Збільшити
       </button>
     </div>
   );

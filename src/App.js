@@ -12,7 +12,8 @@ export default function App() {
         name="Vitaliy and Iryrna Zhakun"
         location="center of the Paris"
       />
-      <Counter class="card v-3" bclass="btn" btext="Increase" />
+      <Counter class="card v-3" bclass="button" />
+      <Counter class="card v-1" bclass="but" />
     </div>
   );
 }
