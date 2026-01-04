@@ -1,4 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap");
+
+/* CSS Змінні */
+:root {
+  /* Light Mode Gradient Background */
+  --bg: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 50%, #e2e8f0 100%);
+  --sidebar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-info-bg: linear-gradient(
+    135deg,
+    rgba(0, 102, 255, 0.03),
+    rgba(0, 102, 255, 0.07)
+  );
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #0066ff;
+  --sidebar-width: 380px;
+
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --danger-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  --additional-gradient: linear-gradient(#ff6b6b, #ff3366, #fff) content-box,
+    linear-gradient(#fff, #fee140, #667eea);
+
+  /* Динамічні параметри */
+  --radius: 24px;
+  --thick: 3px;
+  --speed: 3s;
+  --blur: 25px;
+  --card-pad: 35px;
+  --glow-op: 1;
+  --angle: 0deg;
+}
+
+* {
+  box-sizing: border-box;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  margin: 10px 10 px;
+  padding: 15px 15px;
+  background: var(--bg);
+  color: var(--text-main);
+  display: inline-block;
+  height: 700vh;
+  overflow: hidden;
+}
+
+/* body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-main);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}*/
+
+/* --- WORKSPACE --- */
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  padding: 60px;
+  scroll-behavior: smooth;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 40px;
+}
+
+/* CARDS */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: var(--card-pad);
+  position: relative;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--thick) * -1);
+  border-radius: var(--radius);
+  padding: var(--thick);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: 0.5s;
+  filter: blur(var(--blur));
+}
+.card:hover::before {
+  opacity: var(--glow-op);
+  animation: rotate-angle var(--speed) linear infinite;
+}
+
+.s-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.s-card {
+  background: linear-gradient(
+    #abbdfab9,
+    #787afdd2 40%,
+    #f5e19279
+  ); /* rgba(22, 33, 62, 0.2); var(--success-gradient)*/
+  backdrop-filter: blur(10px);
+  padding: 15px 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(2, 16, 77, 0.726);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.s-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.s-card:hover::before {
+  transform: scaleX(1);
+}
+
+.s-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+p,
+.info-section li {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 0;
+  list-style-type: square;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.9px;
+  padding: 5px;
+  /* text-transform: uppercase; */
+}
+h3 {
+  margin: 3px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  padding: 5px 5px;
+  text-transform: uppercase;
+}
+.btn {
+  background: var(--text-main);
+  color: var(--bg);
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.02);
+}
+/* Ефекти */
+@keyframes rotate-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+.v-1::before {
+  background: conic-gradient(from var(--angle), transparent 70%, var(--accent));
+}
+.v-2::before {
+  background: conic-gradient(
+    from var(--angle),
+    var(--accent),
+    transparent 25%,
+    var(--accent) 50%,
+    transparent 75%
+  );
+}
+.v-3::before {
+  background: conic-gradient(
+    from var(--angle),
+    #ff3366,
+    #ffcc00,
+    #33ff99,
+    #0066ff,
+    #ff3366
+  );
+}
+.v-4::before {
+  background: conic-gradient(from var(--angle), var(--accent), transparent 85%);
+}
+.v-5::before {
+  background: conic-gradient(
+    from var(--angle),
+    var(--accent) 0deg,
+    transparent 45deg,
+    var(--accent) 90deg,
+    transparent 135deg,
+    var(--accent) 180deg,
+    transparent 225deg,
+    var(--accent) 270deg,
+    transparent 315deg
+  );
+}
+.v-6::before {
+  background: conic-gradient(from var(--angle), var(--accent), transparent 50%);
+  -webkit-mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 20deg),
+    linear-gradient(#fff 0 0) content-box;
+}
+.v-7::before {
+  inset: 10px;
+  background: conic-gradient(from var(--angle), var(--accent), transparent 40%);
+  filter: blur(10px);
+}
+
+.e-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.e-buttons button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.e-buttons button:hover {
+  background: #43a047;
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes pulse {
+  from {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
