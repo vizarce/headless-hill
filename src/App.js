@@ -1,6 +1,6 @@
 import "./styles.css";
-import Greeting from "./Greeting.js";
-import Counter from "./counter.js";
+import { Greet, Greeting } from "./greeting.js";
+import { Counter, CounterSimple } from "./counter.js";
 
 export default function App() {
   return (
@@ -12,8 +12,11 @@ export default function App() {
         name="Vitaliy and Iryrna Zhakun"
         location="center of the Paris"
       />
-      <Counter class="card v-3" bclass="button" />
-      <Counter class="card v-1" bclass="but" />
+      <Greet name="Олексій" color="blue" />
+      <Greet name="Марія" color="red" />
+      <CounterSimple />
+      <Counter class="card v-3" bclass="button" bnclass="btn" />
+      <Counter class="card v-1" bclass="btn" bnclass="button" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Greeting(props) {
+export function Greeting(props) {
   return (
     <>
       <div className={props.class}>
@@ -9,4 +9,8 @@ export default function Greeting(props) {
       </div>
     </>
   );
+}
+
+export function Greet(props) {
+  return <h1 style={{ color: props.color }}>Привіт, {props.name}!</h1>;
 }

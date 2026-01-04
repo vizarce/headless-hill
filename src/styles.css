@@ -47,7 +47,15 @@
   padding: 15px 15px;
   background: var(--bg);
   color: var(--text-main);
-  display: inline-block;
+  align-items: safe;
+  justify-items: center;
+  flex-direction: column;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  flex-basis: content;
+  flex-shrink: 0;
+  -webkit-box-flex-group: inherit;
   height: 700vh;
   overflow: hidden;
 }
@@ -77,6 +85,9 @@
 
 /* CARDS */
 .card {
+  margin: 20px;
+  padding: 15px 15px;
+  min-width: 450px;
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: var(--card-pad);
@@ -85,6 +96,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transform: scale(1);
+  box-shadow: 5px 5px 17px rgba(102, 126, 234, 0.7),
+    inset -1px -2px 5px rgba(0, 102, 255, 0.05);
 }
 .card::before {
   content: "";
@@ -92,7 +106,7 @@
   inset: calc(var(--thick) * -1);
   border-radius: var(--radius);
   padding: var(--thick);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   opacity: 0;
   transition: 0.5s;
@@ -100,6 +114,11 @@
 }
 .card:hover::before {
   opacity: var(--glow-op);
+  animation: rotate-angle var(--speed) linear infinite;
+}
+.card:hover {
+  opacity: var(--glow-op);
+  transform: scale(1.03);
   animation: rotate-angle var(--speed) linear infinite;
 }
 
@@ -154,7 +173,7 @@ h4 {
   color: var(--accent);
 }
 p,
-.info-section li {
+.li {
   margin: 0 0 12px;
   font-size: 12.5px;
   line-height: 1.6;
@@ -186,15 +205,15 @@ h3 {
   text-transform: uppercase;
 }
 .btn {
-  background: var(--text-main);
+  background: var(--warning-gradient);
   color: var(--bg);
   border: none;
   padding: 14px;
   border-radius: 12px;
   font-weight: 800;
-  font-size: 11px;
+  font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   transition: 0.3s;
 }
 .btn:hover {
@@ -248,7 +267,7 @@ h3 {
 }
 .v-6::before {
   background: conic-gradient(from var(--angle), var(--accent), transparent 50%);
-  -webkit-mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 20deg),
+  mask: repeating-conic-gradient(#000 0 10deg, transparent 10deg 20deg),
     linear-gradient(#fff 0 0) content-box;
 }
 .v-7::before {
@@ -257,6 +276,9 @@ h3 {
   filter: blur(10px);
 }
 
+button {
+  margin: 7px;
+}
 .e-buttons {
   display: flex;
   justify-content: space-between;
@@ -275,14 +297,17 @@ h3 {
   font-size: 12px;
 }
 
-.button {
+button {
   background: #4caf50;
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 5px 5px 17px rgba(102, 126, 234, 0.7),
+    -1px -2px 5px rgba(0, 102, 255, 0.5);
 }
 
 .e-buttons button:hover {
