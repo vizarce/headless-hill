@@ -1,6 +1,7 @@
 import "./styles.css";
 import { Greet, Greeting } from "./greeting.js";
 import { Counter, CounterSimple } from "./counter.js";
+import { FormInput } from "./form.js";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <CounterSimple />
       <Counter class="card v-3" bclass="button" bnclass="btn" />
       <Counter class="card v-1" bclass="btn" bnclass="button" />
+      <FormInput class="card" bclass="button" />
     </div>
   );
 }
